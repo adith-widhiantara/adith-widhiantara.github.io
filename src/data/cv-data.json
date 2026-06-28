@@ -266,21 +266,21 @@
   "skills": {
     "backend": [
       {
-        "name": "Java (Spring Camunda)",
-        "highlights": [
-          "Scalable & robust architecture for high-load enterprise applications",
-          "Integrated workflow engine simplifies business process orchestration",
-          "Extensive ecosystem with rich libraries and strong community support",
-          "Achieved ≥ 90% unit-test coverage using JUnit and Mockito"
-        ]
-      },
-      {
         "name": "PHP (Laravel)",
         "highlights": [
           "Rapid development using MVC structure and Artisan CLI",
           "Built-in tools for authentication, caching, queues, and testing",
           "Elegant syntax for clean, maintainable code",
           "Ensured ≥ 90% unit-test coverage with PHPUnit"
+        ]
+      },
+      {
+        "name": "Java (Spring Camunda)",
+        "highlights": [
+          "Scalable & robust architecture for high-load enterprise applications",
+          "Integrated workflow engine simplifies business process orchestration",
+          "Extensive ecosystem with rich libraries and strong community support",
+          "Achieved ≥ 90% unit-test coverage using JUnit and Mockito"
         ]
       }
     ],
@@ -345,97 +345,104 @@
       "id": "os-001",
       "name": "Laravel Async Audit Logger",
       "role": "Creator & Maintainer",
-      "url": "https://github.com/adith-widhiantara",
+      "url": "https://github.com/adith-widhiantara/laravel-async-audit-logger",
       "description": "This package provides an asynchronous audit logging system using Redis as a buffer and a Daemon Worker for bulk database insertion. It is designed to handle high-traffic applications where traditional synchronous logging would cause performance bottlenecks."
     },
     {
       "id": "os-002",
       "name": "Laravel Advanced CRUD Generator",
       "role": "Creator & Maintainer",
-      "url": "https://github.com/adith-widhiantara",
+      "url": "https://github.com/adith-widhiantara/crud",
       "description": "Designed a modular Laravel package utilizing the Service-Repository Pattern to automate backend scaffolding via custom Artisan commands, implementing Metaprogramming and Reflection API for dynamic database schema validation. The solution features an abstract filtering and sorting engine optimized to handle complex nested relationship searches without N+1 query issues, while ensuring data integrity through atomic bulk operations secured by database transactions."
     }
   ],
   "projects": [
     {
       "id": "proj-001",
+      "name": "SiakadCloud Product",
+      "company": "PT Sentra Vidya Utama",
+      "description": "Developed a comprehensive cloud-based academic information system for universities, integrating modules for student management, course scheduling, and faculty administration. Implemented a robust backend architecture to support high concurrency and ensure data integrity across multiple campuses.",
+      "techStack": ["PHP", "RabbitMQ"]
+    },
+    {
+      "id": "proj-002",
       "name": "E-Sign V2 Platform",
       "company": "PT Sentra Vidya Utama",
       "description": "Engineered the core backend infrastructure for the centralized E-Sign platform, specifically designing a high-throughput logging system to trace complex vendor integrations and ensure strict audit compliance. Simultaneously developed an asynchronous event-driven notification service utilizing RabbitMQ to decouple email and in-system alerts from main processes.",
       "techStack": ["PHP", "RabbitMQ"]
     },
     {
-      "id": "proj-002",
+      "id": "proj-003",
       "name": "WhatsApp Blasting Tool",
       "company": "PT Javan Cipta Solusi",
       "description": "Development of an internal application for broadcasting WhatsApp messages. The tool is designed with features for comprehensive customer data management and flexible message content management, with the ability to schedule and execute message delivery.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-003",
+      "id": "proj-004",
       "name": "Internal QA Tools",
       "company": "PT Javan Cipta Solusi",
       "description": "Development of a specialized internal tool for the Quality Assurance team. A centralized platform that streamlines and manages various aspects of the QA workflow including test cases, issue tracking, software releases, and test runs.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-004",
+      "id": "proj-005",
       "name": "Anti-Corruption Complaint Handling System",
       "company": "PT Javan Cipta Solusi & Komisi Pemberantasan Korupsi RI",
       "description": "Maintenance of the KPK-KWS 2023 application and its supporting systems, used for managing public complaints related to corruption cases. Ensured system stability and performance to support effective case handling by the authorities.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-005",
+      "id": "proj-006",
       "name": "Ops Console Enhancements",
       "company": "PT Javan Cipta Solusi & PT Bank Rakyat Indonesia Tbk",
       "description": "Enhancement of BRI's Ops Console system, focusing on the Manual Reconciliation module and the RTGS (Real-Time Gross Settlement) module. Delivered strategic dashboards to support executive decision-making.",
       "techStack": ["PHP", "Laravel", "Java", "Spring Camunda"]
     },
     {
-      "id": "proj-006",
+      "id": "proj-007",
       "name": "Internal Data Validation Platform for Telco Integration",
       "company": "PT Javan Cipta Solusi, PT Linknet & PT XL Axiata",
       "description": "Developed the Interval System for PT Linknet, designed to validate HPDB data prior to submission to PT XL Axiata's LMS application. Streamlined data submission processes and significantly improved operational efficiency.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-007",
+      "id": "proj-008",
       "name": "HRM Implementation",
       "company": "PT Javan Cipta Solusi & CV Kunikita Persada",
       "description": "Led the implementation of an HRM module fully integrated with Odoo ERP to automate and optimize employee monitoring. Enabled real-time synchronization of attendance, leave, and payroll data.",
       "techStack": ["PHP", "Laravel", "Odoo ERP"]
     },
     {
-      "id": "proj-008",
+      "id": "proj-009",
       "name": "LPSE Monitoring",
       "company": "PT Indah Karya (Persero)",
       "description": "Developed a comprehensive platform to track tender projects across more than 50 LPSE websites, providing real-time updates and insights based on specific project criteria.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-009",
+      "id": "proj-010",
       "name": "Project Monitoring",
       "company": "PT Indah Karya (Persero)",
       "description": "Designed and implemented a robust system to monitor the progress of ongoing projects at PT Indah Karya, covering both physical and financial aspects with real-time status updates.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-010",
+      "id": "proj-011",
       "name": "Link Shortener",
       "company": "PT Indah Karya (Persero)",
       "description": "Developed a secure and efficient URL shortening tool to streamline the sharing of official links, improving the credibility of links shared by PT Indah Karya.",
       "techStack": ["PHP", "Laravel"]
     },
     {
-      "id": "proj-011",
+      "id": "proj-012",
       "name": "Bank Integration",
       "company": "PT Hashmicro",
       "description": "Created a dynamic website that integrates various banking services into a unified platform enabling intra-bank and inter-bank transfers, mutation checks, virtual account payments, and other banking functionalities.",
       "techStack": ["PHP", "Laravel 8"]
     },
     {
-      "id": "proj-012",
+      "id": "proj-013",
       "name": "Clubfood Co",
       "company": "PT Hashmicro",
       "description": "Developed a platform that aggregates and integrates restaurant menus, ratings, and other relevant data from multiple food delivery platforms such as GrabFood, GoFood, and Traveloka Food.",

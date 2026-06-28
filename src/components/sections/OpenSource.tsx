@@ -7,8 +7,8 @@ export default function OpenSource() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section id="open-source" className="py-20 px-6" style={{ backgroundColor: 'var(--bg)' }}>
-      <div className="max-w-3xl mx-auto">
+    <section id="open-source" className="py-20" style={{ backgroundColor: 'var(--bg)' }}>
+      <div className="w-[90%] mx-auto">
         <h2 className="text-2xl font-bold mb-12" style={{ color: 'var(--text-primary)' }}>
           Open Source
         </h2>

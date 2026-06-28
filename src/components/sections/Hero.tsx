@@ -50,8 +50,8 @@ export default function Hero() {
       }
 
   return (
-    <section id="hero" className="py-20 px-6" style={{ backgroundColor: 'var(--bg)' }}>
-      <div className="max-w-3xl mx-auto">
+    <section id="hero" className="py-20" style={{ backgroundColor: 'var(--bg)' }}>
+      <div className="w-[90%] mx-auto">
         <motion.div {...anim}>
           <p className="font-mono text-sm mb-4" style={{ color: 'var(--accent)' }}>
             Hello, I&apos;m

@@ -16,8 +16,8 @@ export default function Contact() {
       }
 
   return (
-    <section id="contact" className="py-20 px-6" style={{ backgroundColor: 'var(--bg)' }}>
-      <div className="max-w-3xl mx-auto">
+    <section id="contact" className="py-20" style={{ backgroundColor: 'var(--bg)' }}>
+      <div className="w-[90%] mx-auto">
         <motion.div {...anim}>
           <h2 className="text-2xl font-bold mb-3" style={{ color: 'var(--text-primary)' }}>
             Contact

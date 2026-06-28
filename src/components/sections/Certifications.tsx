@@ -6,8 +6,8 @@ export default function Certifications() {
   const shouldReduce = useReducedMotion()
 
   return (
-    <section id="certifications" className="py-20 px-6" style={{ backgroundColor: 'var(--bg-subtle)' }}>
-      <div className="max-w-3xl mx-auto">
+    <section id="certifications" className="py-20" style={{ backgroundColor: 'var(--bg-subtle)' }}>
+      <div className="w-[90%] mx-auto">
         <h2 className="text-2xl font-bold mb-12" style={{ color: 'var(--text-primary)' }}>
           Certifications
         </h2>

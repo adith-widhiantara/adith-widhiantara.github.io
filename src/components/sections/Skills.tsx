@@ -17,8 +17,8 @@ export default function Skills() {
         }
 
   return (
-    <section id="skills" className="py-20 px-6" style={{ backgroundColor: 'var(--bg)' }}>
-      <div className="max-w-3xl mx-auto">
+    <section id="skills" className="py-20" style={{ backgroundColor: 'var(--bg)' }}>
+      <div className="w-[90%] mx-auto">
         <h2 className="text-2xl font-bold mb-12" style={{ color: 'var(--text-primary)' }}>
           Skills
         </h2>
