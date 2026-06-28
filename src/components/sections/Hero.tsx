@@ -56,55 +56,64 @@ export default function Hero() {
           <p className="font-mono text-sm mb-4" style={{ color: 'var(--accent)' }}>
             Hello, I&apos;m
           </p>
-          <h1
-            className="text-4xl sm:text-5xl font-bold mb-5 leading-tight"
-            style={{ color: 'var(--text-primary)' }}
-          >
-            {cvData.personal.name}
-          </h1>
+
+          <div className="flex items-center gap-5 mb-5">
+            <img
+              src="/photo.jpeg"
+              alt={cvData.personal.name}
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover object-top border-2 shrink-0"
+              style={{ borderColor: 'var(--border)' }}
+            />
+            <h1
+              className="text-4xl sm:text-5xl font-bold leading-tight"
+              style={{ color: 'var(--text-primary)' }}
+            >
+              {cvData.personal.name}
+            </h1>
+          </div>
 
           <div className="font-mono text-lg sm:text-xl mb-6 h-8 flex items-center gap-0.5" style={{ color: 'var(--mono)' }}>
-            <span>{displayed}</span>
-            <span className="animate-pulse select-none">|</span>
-          </div>
+              <span>{displayed}</span>
+              <span className="animate-pulse select-none">|</span>
+            </div>
 
-          <p
-            className="text-base mb-10 max-w-xl"
-            style={{ color: 'var(--text-muted)', lineHeight: '1.7' }}
-          >
-            {firstTwoSentences(cvData.objective)}
-          </p>
+            <p
+              className="text-base mb-10 max-w-xl"
+              style={{ color: 'var(--text-muted)', lineHeight: '1.7' }}
+            >
+              {firstTwoSentences(cvData.objective)}
+            </p>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href={cvData.personal.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
-              style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
-            >
-              <Github size={15} />
-              GitHub
-            </a>
-            <a
-              href={cvData.personal.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
-              style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
-            >
-              <Linkedin size={15} />
-              LinkedIn
-            </a>
-            <a
-              href={`mailto:${cvData.personal.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-opacity duration-150 hover:opacity-80"
-              style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
-            >
-              <Mail size={15} />
-              Email Me
-            </a>
-          </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={cvData.personal.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
+                style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+              >
+                <Github size={15} />
+                GitHub
+              </a>
+              <a
+                href={cvData.personal.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
+                style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+              >
+                <Linkedin size={15} />
+                LinkedIn
+              </a>
+              <a
+                href={`mailto:${cvData.personal.email}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-opacity duration-150 hover:opacity-80"
+                style={{ backgroundColor: 'var(--accent)', color: '#fff' }}
+              >
+                <Mail size={15} />
+                Email Me
+              </a>
+            </div>
         </motion.div>
       </div>
     </section>

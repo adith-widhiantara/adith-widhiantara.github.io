@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { cn } from '@/lib/utils'
 import cvData from '@/data/cv-data.json'
 
 const DEFAULT_SHOW = 6
@@ -9,17 +8,9 @@ const DEFAULT_SHOW = 6
 export default function Projects() {
   const shouldReduce = useReducedMotion()
   const [showAll, setShowAll] = useState(false)
-  const [expanded, setExpanded] = useState<Set<string>>(new Set())
 
   const displayed = showAll ? cvData.projects : cvData.projects.slice(0, DEFAULT_SHOW)
   const remaining = cvData.projects.length - DEFAULT_SHOW
-
-  const toggleExpand = (id: string) =>
-    setExpanded((prev) => {
-      const next = new Set(prev)
-      next.has(id) ? next.delete(id) : next.add(id)
-      return next
-    })
 
   return (
     <section id="projects" className="py-20" style={{ backgroundColor: 'var(--bg-subtle)' }}>
@@ -30,8 +21,6 @@ export default function Projects() {
 
         <div className="space-y-4">
           {displayed.map((proj, i) => {
-            const isExpanded = expanded.has(proj.id)
-            const isLong = proj.description.length > 180
             const anim = shouldReduce
               ? {}
               : {
@@ -57,21 +46,11 @@ export default function Projects() {
                 </div>
 
                 <p
-                  className={cn('text-sm mb-2', !isExpanded && 'line-clamp-3')}
+                  className="text-sm mb-3"
                   style={{ color: 'var(--text-muted)', lineHeight: '1.7' }}
                 >
                   {proj.description}
                 </p>
-
-                {isLong && (
-                  <button
-                    onClick={() => toggleExpand(proj.id)}
-                    className="text-xs mb-3 transition-opacity duration-150 hover:opacity-60"
-                    style={{ color: 'var(--accent)' }}
-                  >
-                    {isExpanded ? 'Show less' : 'Show more'}
-                  </button>
-                )}
 
                 {proj.techStack.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mt-1">
