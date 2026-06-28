@@ -1,0 +1,70 @@
+---
+title: "Building Async Audit Logging in Laravel with Redis"
+date: "2026-06-20"
+excerpt: "How I designed an asynchronous audit logging system using Redis as a buffer and a daemon worker for bulk insertions — the architecture behind my open-source package."
+tags: ["laravel", "redis", "backend", "open-source"]
+published: false
+---
+
+Traditional audit logging in Laravel is straightforward: hook into model events, write a row, done. That works until you're handling thousands of requests per second and every write becomes a synchronous bottleneck.
+
+## The Problem
+
+In high-traffic systems, synchronous audit logging causes two problems:
+
+- **Latency spikes** — every audited action waits for a DB write before returning a response
+- **Connection pool exhaustion** — burst traffic floods the database with audit inserts alongside your actual queries
+
+The solution is to decouple logging from the request lifecycle entirely.
+
+## Architecture
+
+The system has three parts:
+
+```
+Request → Redis Buffer → Daemon Worker → Database (bulk insert)
+```
+
+**1. Redis as a write buffer**
+
+Instead of writing directly to the database, each audit event is pushed to a Redis list:
+
+```php
+Redis::rpush('audit_log_queue', json_encode($payload));
+```
+
+This is O(1) and non-blocking. The request returns immediately.
+
+**2. Daemon Worker**
+
+A long-running process pops events in batches and bulk-inserts them:
+
+```php
+while (true) {
+    $batch = Redis::lrange('audit_log_queue', 0, 499);
+    if (empty($batch)) {
+        sleep(1);
+        continue;
+    }
+
+    DB::table('audit_logs')->insert(
+        array_map(fn($e) => json_decode($e, true), $batch)
+    );
+
+    Redis::ltrim('audit_log_queue', count($batch), -1);
+}
+```
+
+Bulk inserts are dramatically faster than individual writes — 500 rows in one query vs 500 separate queries.
+
+**3. Graceful shutdown**
+
+The daemon listens for `SIGTERM` and flushes the remaining queue before exiting, so no events are lost during deployments.
+
+## Results
+
+On our E-Sign V2 platform, this reduced audit-related DB load by ~85% during peak traffic, with zero data loss over 3 months of production use.
+
+## Open Source
+
+This is now packaged as **Laravel Async Audit Logger** — available on GitHub. It handles Redis configuration, worker supervision via Supervisor, and configurable batch sizes out of the box.

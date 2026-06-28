@@ -7,8 +7,12 @@ import Projects from '@/components/sections/Projects'
 import Skills from '@/components/sections/Skills'
 import Certifications from '@/components/sections/Certifications'
 import Contact from '@/components/sections/Contact'
+import Blog from '@/components/sections/Blog'
+import { getAllPosts } from '@/lib/mdx'
 
 export default function Home() {
+  const latestPosts = getAllPosts().slice(0, 3)
+
   return (
     <>
       <Header />
@@ -20,6 +24,7 @@ export default function Home() {
         <Experience />
         <Certifications />
         <Contact />
+        <Blog posts={latestPosts} />
       </main>
       <Footer />
     </>

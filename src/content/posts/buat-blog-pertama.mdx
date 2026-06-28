@@ -1,0 +1,77 @@
+---
+title: "Membangun Portfolio Pribadi: Mulai dari yang Penting Dulu"
+date: "2026-06-28"
+excerpt: "Cerita di balik pembuatan portfolio ini — kenapa saya bikin, tech stack apa yang saya pilih, dan kenapa konsistensi lebih penting dari kesempurnaan."
+tags: ["personal", "engineering", "portfolio", "next.js"]
+published: true
+---
+
+Akhirnya jadi juga.
+
+Sudah lama sebenernya saya ingin punya *space* sendiri di internet — bukan sekadar profil LinkedIn yang kaku, bukan sekadar GitHub yang isinya commit history. Tapi tempat yang lebih personal. Tempat saya bisa nulis dengan bebas, tanpa harus memikirkan format yang terlalu formal.
+
+Dan hari ini, portfolio itu sudah live.
+
+## Kenapa Bikin Portfolio Sendiri?
+
+Jujur, alasannya sederhana: saya ingin punya *single source of truth* untuk diri saya sendiri sebagai engineer.
+
+Selama ini kalau ditanya *"portofolio kamu di mana?"*, jawabannya selalu panjang — *"ada di LinkedIn, terus projectnya di GitHub, terus ada beberapa tulisan di sini-situ..."*. Tidak ada satu tempat yang benar-benar merepresentasikan siapa saya sebagai seorang Software Engineer.
+
+Portfolio ini adalah jawaban dari pertanyaan itu.
+
+## Tech Stack yang Saya Pilih
+
+Saya tidak mau over-engineer ini. Ini portfolio, bukan startup. Jadi pilihannya harus yang:
+
+1. **Saya sudah familiar** — tidak mau buang waktu belajar hal baru hanya untuk bikin portfolio
+2. **Mudah di-maintain** — kalau mau update konten, prosesnya harus simpel
+3. **Performa bagus** — halaman yang lambat itu menyebalkan, apalagi ini representasi diri saya sebagai engineer
+
+Hasilnya:
+
+- **Next.js 14** dengan App Router — framework yang sudah saya pakai sehari-hari
+- **TypeScript** — karena hidup terlalu singkat untuk debugging runtime error yang seharusnya bisa di-catch waktu compile
+- **Tailwind CSS** — utility-first, cepat, tidak perlu mikir nama class yang aneh-aneh
+- **GitHub Pages** — gratis, reliable, dan deploy-nya otomatis via GitHub Actions setiap kali saya push ke `main`
+
+Tidak ada backend. Tidak ada database. Semua konten di-drive dari satu file JSON. Simpel.
+
+## Kenapa Static Site?
+
+Karena untuk kebutuhan portfolio, static site itu lebih dari cukup.
+
+Tidak perlu server yang harus dijaga uptime-nya. Tidak perlu bayar hosting. Tidak perlu mikirin scaling. GitHub Pages handles semua itu — saya tinggal fokus ke konten.
+
+Tradeoffnya? Setiap update konten harus lewat git push. Tapi sebagai engineer, itu bukan masalah sama sekali.
+
+## Tentang Blog Ini
+
+Bagian ini yang paling saya excited-kan.
+
+Di sini saya akan nulis apa yang ada di kepala saya — tidak terbatas hanya soal code. Bisa jadi soal pengalaman kerja, cerita tentang tim, hal-hal yang saya pelajari dari kesalahan, atau bahkan opini saya tentang hal-hal di luar technical.
+
+Beberapa tema yang kemungkinan akan sering muncul:
+
+- **Engineering & Code** — library update, pattern yang menarik, hal teknikal yang worth dishare
+- **Professional life** — dinamika tim, career lessons, hal-hal yang tidak diajarkan di tutorial manapun
+- **Security awareness** — karena masih banyak hal sederhana yang sering diabaikan orang
+- **Catatan harian** — refleksi, observasi, apapun yang terasa penting untuk ditulis
+
+Tidak ada target topik yang kaku. Ini *catatan saya* — isinya ya apa yang saya mau tulis.
+
+## Satu Hal yang Ingin Saya Jaga
+
+**Konsistensi.**
+
+Bukan sempurna. Bukan viral. Bukan punya ribuan pembaca.
+
+Saya sudah lihat terlalu banyak orang yang semangat bikin blog di awal, post dua-tiga artikel, lalu berhenti karena merasa tulisannya harus sempurna dulu. Saya tidak mau jadi seperti itu.
+
+Tulisan yang *shipped* — meskipun tidak sempurna — selalu lebih baik dari tulisan sempurna yang tidak pernah dipublish.
+
+Jadi kalau kamu baca ini dan tulisan selanjutnya belum ada, tunggu sebentar. Pasti ada.
+
+---
+
+*Kalau ada yang mau diskusi, reach out ke saya di [LinkedIn](https://linkedin.com/in/adith-widhiantara) atau cek project-project saya di [GitHub](https://github.com/adith-widhiantara).*
