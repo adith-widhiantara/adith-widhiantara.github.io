@@ -16,10 +16,20 @@ export default function CopyForMediumButton() {
   async function handleCopy() {
     const el = document.getElementById('mdx-content')
     if (!el) return
+
+    // Clone so we can rewrite relative img src → absolute without touching the DOM
+    const clone = el.cloneNode(true) as HTMLElement
+    clone.querySelectorAll('img').forEach((img) => {
+      const src = img.getAttribute('src')
+      if (src && src.startsWith('/')) {
+        img.setAttribute('src', `https://adith-widhiantara.github.io${src}`)
+      }
+    })
+
     try {
       await navigator.clipboard.write([
         new ClipboardItem({
-          'text/html': new Blob([el.innerHTML], { type: 'text/html' }),
+          'text/html': new Blob([clone.innerHTML], { type: 'text/html' }),
           'text/plain': new Blob([el.innerText], { type: 'text/plain' }),
         }),
       ])
