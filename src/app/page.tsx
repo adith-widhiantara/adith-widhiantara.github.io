@@ -23,8 +23,8 @@ export default function Home() {
         <Projects />
         <Experience />
         <Certifications />
-        <Contact />
         <Blog posts={latestPosts} />
+        <Contact />
       </main>
       <Footer />
     </>

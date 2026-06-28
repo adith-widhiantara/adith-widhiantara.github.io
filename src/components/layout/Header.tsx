@@ -4,13 +4,13 @@ import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useTheme } from '@/hooks/useTheme'
 
 const NAV = [
-  { href: '#skills', label: 'Skills' },
-  { href: '#open-source', label: 'Open Source' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#certifications', label: 'Certifications' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#open-source', label: 'Open Source' },
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#certifications', label: 'Certifications' },
   { href: '/blog/', label: 'Blog' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#contact', label: 'Contact' },
 ]
 
 export default function Header() {
