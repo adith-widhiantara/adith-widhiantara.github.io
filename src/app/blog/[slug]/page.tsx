@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MDXContent from '@/components/blog/MDXContent'
 import { getAllSlugs, getPostBySlug } from '@/lib/mdx'
+import CopyForMediumButton from '@/components/blog/CopyForMediumButton'
 
 type Props = { params: { slug: string } }
 
@@ -60,20 +61,25 @@ export default function PostPage({ params }: Props) {
             >
               {post.title}
             </h1>
-            <div className="flex flex-wrap gap-1.5">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="font-mono text-xs px-2 py-0.5 rounded"
-                  style={{ backgroundColor: 'var(--accent-dim)', color: 'var(--accent)' }}
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap gap-1.5">
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="font-mono text-xs px-2 py-0.5 rounded"
+                    style={{ backgroundColor: 'var(--accent-dim)', color: 'var(--accent)' }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <CopyForMediumButton />
             </div>
           </header>
 
-          <MDXContent source={post.content} />
+          <div id="mdx-content">
+            <MDXContent source={post.content} />
+          </div>
         </div>
       </main>
       <Footer />
