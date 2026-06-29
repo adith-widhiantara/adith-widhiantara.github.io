@@ -1,0 +1,49 @@
+---
+title: "Blog Saya Sekarang Support Video"
+date: "2026-06-29"
+excerpt: "Baru tambahkan dukungan video di blog — bisa embed lokal maupun YouTube. Salah satu kelebihan punya blog sendiri."
+tags: ["personal", "portfolio", "engineering"]
+published: true
+---
+
+Barusan saya tambahkan fitur baru di blog ini: **support video**.
+
+Sederhana, tapi cukup bikin saya senang. Sekarang di setiap artikel saya bisa sisipkan video — baik dari file lokal di repository maupun langsung dari YouTube.
+
+## Cara Kerjanya
+
+Konsepnya simpel. Untuk video lokal, cukup cantumkan path file-nya:
+
+```mdx
+<Video src="/blog-videos/demo.mp4" caption="Contoh video lokal" />
+```
+
+Untuk YouTube, cukup ambil ID video-nya:
+
+```mdx
+<YouTube id="t4G9wSjNyjk" caption="Contoh embed YouTube" />
+```
+
+Tidak perlu copy-paste iframe panjang, tidak perlu urusan embed manual. Dua komponen kecil yang langsung jalan.
+
+## Ini Salah Satu Kelebihan Punya Blog Sendiri
+
+Platform seperti Medium tidak bisa melakukan ini — setidaknya tidak dengan cara yang sama. Custom component seperti `<Video />` dan `<YouTube />` adalah fitur yang hanya bisa ada kalau kamu punya kendali penuh atas blog kamu sendiri.
+
+Di Medium, kamu bergantung pada fitur yang mereka sediakan. Di sini, kalau saya butuh sesuatu yang belum ada — saya tinggal buat sendiri.
+
+Fleksibilitas itu yang saya jaga dari awal ketika memutuskan untuk build portfolio sendiri daripada nulis di platform orang.
+
+## Hasilnya akan seperti ini
+
+Ini yang local video
+
+<Video src="/blog-videos/file_example_MP4_640_3MG.mp4" caption="Contoh video lokal" />
+
+Ini yang ambil dari youtube
+
+<YouTube id="t4G9wSjNyjk" caption="Contoh embed YouTube" />
+
+---
+
+*Artikel dengan video pertama menyusul.*

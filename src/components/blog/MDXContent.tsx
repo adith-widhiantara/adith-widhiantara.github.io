@@ -3,6 +3,45 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 import CodeBlock from './CodeBlock'
 
+function Video({ src, caption }: { src: string; caption?: string }) {
+  return (
+    <figure className="my-6">
+      <video
+        src={src}
+        controls
+        className="w-full rounded-lg"
+        style={{ backgroundColor: 'var(--bg-subtle)' }}
+      />
+      {caption && (
+        <figcaption className="text-center font-mono text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+function YouTube({ id, caption }: { id: string; caption?: string }) {
+  return (
+    <figure className="my-6">
+      <div className="relative w-full rounded-lg overflow-hidden" style={{ paddingBottom: '56.25%' }}>
+        <iframe
+          src={`https://www.youtube.com/embed/${id}`}
+          title={caption ?? 'YouTube video'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 w-full h-full"
+        />
+      </div>
+      {caption && (
+        <figcaption className="text-center font-mono text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="text-3xl font-bold mt-8 mb-4" style={{ color: 'var(--text-primary)' }} {...props} />
@@ -53,6 +92,8 @@ const components = {
       {...props}
     />
   ),
+  Video,
+  YouTube,
 }
 
 export default function MDXContent({ source }: { source: string }) {
