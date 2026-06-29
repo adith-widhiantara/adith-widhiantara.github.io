@@ -1,4 +1,7 @@
+import React from 'react'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+import CodeBlock from './CodeBlock'
 
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -17,6 +20,7 @@ const components = {
     <strong className="font-semibold" style={{ color: 'var(--text-primary)' }} {...props} />
   ),
   em: (props: React.HTMLAttributes<HTMLElement>) => <em className="italic" {...props} />,
+  // Inline code only — block code is handled by the `pre` override below
   code: (props: React.HTMLAttributes<HTMLElement>) => (
     <code
       className="font-mono text-sm px-1.5 py-0.5 rounded"
@@ -24,13 +28,8 @@ const components = {
       {...props}
     />
   ),
-  pre: (props: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className="rounded-lg p-4 overflow-x-auto my-6 font-mono text-sm border"
-      style={{ backgroundColor: 'var(--bg-subtle)', borderColor: 'var(--border)' }}
-      {...props}
-    />
-  ),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  pre: CodeBlock as any,
   ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className="list-disc list-inside mb-4 space-y-1" style={{ color: 'var(--text-primary)' }} {...props} />
   ),
