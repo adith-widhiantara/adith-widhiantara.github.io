@@ -1,0 +1,79 @@
+---
+title: "Laptop Bersih, PHP Tetap Jalan: Saya 'Meminjam' dari Docker"
+date: "2026-06-29"
+excerpt: "Tidak install PHP, MySQL, atau tools lainnya secara lokal. Semua saya pinjam dari Docker — dan ini mengubah cara saya kerja."
+tags: ["docker", "php", "engineering", "tips", "devtools"]
+published: true
+---
+
+Di laptop saya, tidak ada PHP yang ter-install. Tidak ada MySQL. Tidak ada runtime atau tools development yang biasanya orang install satu per satu.
+
+Tapi saya tetap bisa jalankan PHP 8.3, Composer, MySQL, dan apapun yang saya butuhkan — kapanpun saya mau.
+
+Caranya? Saya **meminjam** dari Docker.
+
+## Konsepnya Simpel
+
+Daripada install PHP langsung di sistem, saya pull image official-nya dari Docker dan jalankan sesuai kebutuhan. Selesai dipakai, container-nya hilang. Laptop tetap bersih.
+
+Ini yang saya maksud dengan "meminjam" — saya pakai, saya kembalikan, tidak ada yang tertinggal di sistem.
+
+Untuk PHP dan Composer, saya buat dua fungsi kecil di shell:
+
+```bash
+# Meminjam PHP 8.3 dari Docker
+php8() {
+  docker run --rm -it \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/usr/src/app" \
+    -w /usr/src/app \
+    php:8.4-cli-alpine \
+    php "$@"
+}
+
+# Meminjam Composer yang kompatibel dengan PHP terbaru
+composer8() {
+  docker run --rm -it \
+    -v "$(pwd):/app" \
+    -v ~/.composer:/tmp \
+    composer:latest "$@"
+}
+```
+
+Taruh di `.zshrc` atau `.bashrc`, lalu tinggal panggil:
+
+```bash
+composer8 create-project laravel/laravel my-app
+```
+
+Rasanya sama persis seperti Composer yang ter-install langsung — tapi sebenernya itu container yang hidup sesaat, lalu hilang.
+
+## Kenapa Saya Pilih Cara Ini?
+
+**Versioning jadi fleksibel.** Kalau ada project yang butuh PHP 8.1 dan project lain butuh PHP 8.3, tinggal buat fungsi berbeda atau ganti tag image-nya. Tidak perlu `phpenv`, tidak perlu drama konflik versi.
+
+**Laptop tidak "kotor".** Tidak ada sisa-sisa binary, config file, atau dependency yang menumpuk setelah berbulan-bulan. Sistem saya tetap predictable.
+
+**Error berkurang.** Masalah klasik *"works on my machine"* jadi jauh lebih jarang karena environment-nya konsisten — semua orang yang pakai image yang sama dapat environment yang sama.
+
+**Mudah onboarding.** Kalau ada rekan baru masuk tim, mereka tidak perlu setup environment dari nol. Cukup punya Docker, langsung bisa jalan.
+
+## Tradeoffnya
+
+Satu hal yang tidak bisa saya pungkiri: **saya dependent pada koneksi internet**.
+
+Pull image pertama kali butuh waktu dan koneksi yang stabil. Kalau lagi di tempat yang internetnya buruk dan belum punya image-nya secara lokal — ya harus sabar dulu.
+
+Tapi setelah image ter-pull, Docker akan cache di lokal. Jadi untuk penggunaan sehari-hari, ini bukan masalah yang sering muncul.
+
+## Sejauh Ini
+
+Pendekatan ini sudah saya pakai cukup lama, dan saya tidak mau balik ke cara lama.
+
+Bukan berarti cara konvensional salah — tapi untuk gaya kerja saya yang sering berpindah project dengan stack berbeda, Docker sebagai "peminjam tools" jauh lebih masuk akal.
+
+Kalau kamu belum coba pendekatan ini, worth it untuk dicoba. Mulai dari satu tools dulu — PHP, Node, atau apapun yang sering kamu pakai — lalu rasakan bedanya.
+
+---
+
+*Ada setup Docker yang menarik di workflow kamu? Saya senang dengar — reach out di [adityaswidhiantara@gmail.com](mailto:adityaswidhiantara@gmail.com).*
