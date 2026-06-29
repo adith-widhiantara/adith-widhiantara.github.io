@@ -18,6 +18,12 @@ Tidak ada target traffic, tidak ada obsesi angka, tidak ada perubahan strategi k
 
 Semoga works.
 
+## Satu Hal yang Hampir Terlewat
+
+Karena portfolio ini di-deploy via GitHub Actions, Measurement ID dari Google Analytics tidak bisa langsung di-hardcode di kode — itu tidak aman untuk di-push ke repository publik.
+
+Solusinya: simpan sebagai **secret variable** di GitHub repository settings, lalu panggil via environment variable saat build. Kalau kamu mau replikasi setup yang sama, jangan lupa langkah ini — tanpa secret yang terdaftar, analytics-nya tidak akan terbaca meski kodenya sudah benar.
+
 ---
 
 *Update menyusul kalau ada yang menarik dari datanya.*
