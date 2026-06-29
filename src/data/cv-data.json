@@ -314,7 +314,8 @@
     ],
     "databases": ["PostgreSQL", "MySQL", "MariaDB"],
     "practices": ["RESTful API", "SOLID principles", "Agile development (Scrum)"],
-    "tools": ["Git", "Metabase", "Office 365", "Camunda Modeler"]
+    "cachingAndMessaging": ["Redis", "Memcached", "RabbitMQ"],
+    "tools": ["Git", "Docker", "Metabase", "Office 365", "Camunda Modeler"]
   },
   "certifications": [
     {

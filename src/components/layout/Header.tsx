@@ -23,7 +23,7 @@ export default function Header() {
       style={{ borderColor: 'var(--border)', backgroundColor: 'var(--bg)' }}
     >
       <div className="w-[90%] mx-auto h-14 flex items-center justify-between">
-        <a href="#" className="font-mono text-sm font-semibold" style={{ color: 'var(--accent)' }}>
+        <a href="/" className="font-mono text-sm font-semibold" style={{ color: 'var(--accent)' }}>
           Aditya S. Widhiantara
         </a>
 

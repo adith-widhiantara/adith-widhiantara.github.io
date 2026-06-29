@@ -4,7 +4,7 @@ import cvData from '@/data/cv-data.json'
 
 export default function Skills() {
   const shouldReduce = useReducedMotion()
-  const { backend, frontend, databases, tools } = cvData.skills
+  const { backend, frontend, databases, cachingAndMessaging, tools } = cvData.skills
 
   const fadeUp = (delay = 0) =>
     shouldReduce
@@ -71,7 +71,7 @@ export default function Skills() {
           </motion.div>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <motion.div {...fadeUp(0)}>
             <h3 className="font-mono text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--accent)' }}>
               Databases
@@ -90,6 +90,23 @@ export default function Skills() {
           </motion.div>
 
           <motion.div {...fadeUp(0.1)}>
+            <h3 className="font-mono text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--accent)' }}>
+              Caching & Messaging
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {cachingAndMessaging.map((item) => (
+                <span
+                  key={item}
+                  className="font-mono text-xs px-2.5 py-1 rounded border"
+                  style={{ borderColor: 'var(--border)', color: 'var(--mono)', backgroundColor: 'var(--bg-subtle)' }}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div {...fadeUp(0.2)}>
             <h3 className="font-mono text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: 'var(--accent)' }}>
               Tools
             </h3>
