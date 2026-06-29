@@ -1,0 +1,49 @@
+---
+title: "Bug di Production, Rollback, dan Pelajaran tentang Edge Case"
+date: "2026-06-29"
+excerpt: "Ada bug di production setelah deploy — muncul dari edge case yang terlewat. Ini cerita bagaimana tim kami menanganinya bersama."
+tags: ["engineering", "career", "reflection", "incident"]
+published: true
+---
+
+![bug-di-production](/blog-images/bug-di-production.png)
+
+Kemarin ada insiden yang cukup bikin adrenalin naik.
+
+Sebuah task sudah selesai dikerjakan, sudah lolos test case, sudah melalui code review berlapis — lalu di-deploy ke production. Tapi tidak lama setelah itu, muncul bug yang cukup berdampak.
+
+Penyebabnya? *Edge case* yang belum pernah kita tulis di test plan manapun.
+
+## Tidak Ada Test Plan yang Sempurna
+
+Yang pertama saya sadari waktu insiden ini terjadi: ini bukan soal siapa yang salah.
+
+Kode sudah direview berlapis. Tapi edge case ini memang tidak terdeteksi di tahap manapun. Dan itu wajar. Tidak ada proses review yang bisa cover 100% skenario, apalagi di sistem yang kompleks dan dipakai banyak pihak dengan kondisi data yang berbeda-beda.
+
+Insiden seperti ini bukan cerminan kegagalan tim — tapi pengingat bahwa software engineering selalu punya ruang untuk hal-hal yang belum kita antisipasi.
+
+## Soal Rollback
+
+Di tengah insiden, ada diskusi soal apakah harus rollback atau tidak. Ini memang respons yang wajar dan sangat manusiawi ketika ada masalah di production — ingin segera kembalikan ke kondisi aman.
+
+Tapi ada pertimbangan teknis yang perlu dipikirkan sebelum rollback dieksekusi: kalau ada data yang sudah berubah di production selama kode baru berjalan, rollback kode saja tidak otomatis membersihkan itu. Dalam kondisi tertentu, rollback justru bisa memunculkan konflik data baru.
+
+Jadi yang lebih penting dari rollback adalah memahami dulu edge case-nya — skenario apa yang terlewat, dampaknya seberapa luas, dan apa yang paling aman dilakukan.
+
+## Bagaimana Akhirnya Diselesaikan
+
+Setelah edge case-nya dipahami, perbaikan dikerjakan dan dipastikan aman lewat testing ulang yang menyeluruh. Karena ada data yang sempat masuk dengan kondisi yang salah selama insiden berlangsung, dijalankan juga migration script untuk memulihkan konsistensi database.
+
+Baru setelah itu insiden bisa dinyatakan closed.
+
+## Yang Saya Bawa Pulang
+
+Satu hal yang paling membekas: respons terhadap insiden itu sama pentingnya dengan pencegahannya.
+
+Panik tidak menyelesaikan masalah lebih cepat. Yang menyelesaikan adalah tim yang bisa duduk tenang, analisis situasi, dan ambil keputusan berbasis data — bukan tekanan.
+
+Dan ke depannya, ini jadi pengingat untuk lebih teliti di fase grooming. Lebih banyak skenario yang dibahas bersama sebelum kode menyentuh production — kolaborasi antara Engineer, QA, dan PM di sana adalah investasi yang worth it.
+
+---
+
+*Insiden ditutup. Data sudah clean. Lanjut sprint.*
