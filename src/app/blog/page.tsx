@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import BlogList from '@/components/blog/BlogList'
+import BlogSearch from '@/components/blog/BlogSearch'
 import { getAllPosts } from '@/lib/mdx'
 
 export const metadata: Metadata = {
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const posts = getAllPosts()
+  const allTags = [...new Set(posts.flatMap((p) => p.tags))].sort()
 
   return (
     <>
@@ -20,7 +21,7 @@ export default function BlogPage() {
           <h1 className="text-3xl font-bold mb-12" style={{ color: 'var(--text-primary)' }}>
             Blog
           </h1>
-          <BlogList posts={posts} />
+          <BlogSearch posts={posts} allTags={allTags} />
         </div>
       </main>
       <Footer />

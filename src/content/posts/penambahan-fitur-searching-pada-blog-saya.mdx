@@ -1,0 +1,43 @@
+---
+title: "Menambahkan Fitur Search dan Filter Tags di Blog"
+date: "2026-06-29"
+excerpt: "Blog saya sekarang bisa dicari dan difilter berdasarkan tags — tanpa dependency baru, murni client-side filtering."
+tags: ["engineering", "portfolio", "next.js", "typescript"]
+published: true
+---
+
+Seiring artikel di blog ini mulai bertambah, saya mulai kepikiran: kalau sudah ada puluhan post nanti, bagaimana pembaca menemukan artikel yang mereka cari?
+
+Jawaban sederhananya: tambahkan fitur search dan filter tags.
+
+## Apakah Bisa Tanpa Dependency Baru?
+
+Pertanyaan pertama yang saya tanyakan ke diri sendiri — dan jawabannya bisa.
+
+Karena blog ini adalah static site, search tidak bisa dilakukan di server. Tidak ada backend yang bisa menerima query. Jadi pendekatannya harus **client-side**: semua data post sudah ada di browser, tinggal difilter secara realtime menggunakan JavaScript biasa.
+
+Tidak perlu library search seperti Fuse.js atau Algolia. Cukup `.filter()` dan `useState`.
+
+## Cara Kerjanya
+
+Server Component di `blog/page.tsx` tetap mengambil semua post dari filesystem seperti biasa — tugasnya tidak berubah. Bedanya sekarang, semua post dan daftar unique tags di-pass ke sebuah Client Component baru: `BlogSearch`.
+
+Di dalam `BlogSearch` inilah filtering terjadi:
+
+- **Search bar** — filter realtime berdasarkan judul dan excerpt
+- **Tag chips** — klik satu atau lebih tag untuk filter, klik lagi untuk unselect
+- Keduanya bisa dikombinasikan — search aktif dan tag aktif bisa berjalan bersamaan
+
+Semuanya reaktif dan instan, tanpa request ke server apapun.
+
+## Kenapa Saya Suka Pendekatan Ini
+
+Simpel, tidak ada overhead tambahan, dan tidak ada dependency baru yang harus di-maintain.
+
+Ini juga salah satu contoh kenapa saya senang dengan arsitektur static site — batasan "tidak ada backend" justru mendorong solusi yang lebih ringan dan efisien. Kalau ini di platform blogging biasa, fitur search mungkin sudah disediakan tapi tidak bisa dikustomisasi. Di sini, saya bisa kontrol persis bagaimana filtering-nya bekerja.
+
+Fitur kecil, tapi cukup bikin pengalaman baca di blog ini lebih baik.
+
+---
+
+*Coba langsung di halaman [Blog](/blog) — ketik judul atau klik tag yang kamu mau.*
