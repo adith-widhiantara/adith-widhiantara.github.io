@@ -36,8 +36,13 @@ export default function Certifications() {
                       className="flex items-center justify-between gap-4 text-sm border-b pb-2.5"
                       style={{ borderColor: 'var(--border)' }}
                     >
-                      <span style={{ color: 'var(--text-primary)' }}>{item.name}</span>
-                      <span className="font-mono text-xs shrink-0" style={{ color: 'var(--text-muted)' }}>
+                      <span className="min-w-0 break-words" style={{ color: 'var(--text-primary)' }}>
+                        {item.name}
+                      </span>
+                      <span
+                        className="font-mono text-xs shrink-0 max-w-[40%] truncate text-right"
+                        style={{ color: 'var(--text-muted)' }}
+                      >
                         {item.issuer}
                       </span>
                     </li>

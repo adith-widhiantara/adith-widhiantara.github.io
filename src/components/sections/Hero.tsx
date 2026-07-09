@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Linkedin, Mail, MessageCircle, Download } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
 import cvData from '@/data/cv-data.json'
 
@@ -86,14 +86,14 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-3">
               <a
-                href={cvData.personal.github}
+                href={`https://wa.me/${cvData.personal.phone.replace(/\D/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
                 style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
               >
-                <Github size={15} />
-                GitHub
+                <MessageCircle size={15} />
+                WhatsApp
               </a>
               <a
                 href={cvData.personal.linkedin}
@@ -112,6 +112,15 @@ export default function Hero() {
               >
                 <Mail size={15} />
                 Email Me
+              </a>
+              <a
+                href="/blog-docs/Aditya S Widhiantara - CV.pdf"
+                download
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium border transition-opacity duration-150 hover:opacity-70"
+                style={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }}
+              >
+                <Download size={15} />
+                Download CV
               </a>
             </div>
         </motion.div>
