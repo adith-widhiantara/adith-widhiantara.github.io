@@ -1,0 +1,83 @@
+---
+title: "Dari Gumaman PM di Rapat Q2 ke Eksplorasi Jira API"
+date: "2026-07-19"
+excerpt: "PM bergumam soal tiket Jira yang bolak-balik. Saya mendengar, penasaran, dan langsung coba buktikan bisa atau tidak."
+tags: ["engineering", "career", "reflection", "jira", "product"]
+published: true
+---
+
+Kemarin kami rapat Q2 — membahas apa yang berjalan baik, apa yang perlu diperbaiki, dan lesson learned untuk Q3 ke depan.
+
+Banyak hal yang dibahas. Tapi yang paling membekas buat saya justru bukan agenda utamanya — melainkan sebuah gumaman kecil dari PM di tengah-tengah rapat.
+
+## Gumaman yang Bikin Saya Penasaran
+
+Di sela-sela diskusi, PM bergumam — atau lebih tepatnya berpikir keras sambil bicara pelan:
+
+*"Bisa nggak ya kita ambil data tiket Jira yang bolak-balik?"*
+
+Maksudnya: tiket yang statusnya naik-turun antara *In Progress* → *Testing QA* → *Feedback QA* → balik lagi *In Progress* → dan seterusnya. Tiket-tiket yang tidak sekali jalan selesai, tapi memantul berkali-kali antara programmer dan QA.
+
+Kalau data itu bisa ditarik, kita bisa tahu task mana yang paling sering bouncing. Apakah karena spesifikasinya kurang jelas? Karena estimasinya tidak realistis? Atau memang complexity-nya lebih tinggi dari yang diprediksi?
+
+Saya mendengar itu dan langsung ada satu pertanyaan di kepala saya: *"Bisa nggak ya?"*
+
+## Quick Research di Tengah Rapat
+
+Tanpa banyak basa-basi, saya langsung coba.
+
+Saya cari URL API dari Jira — dan ternyata cukup straightforward. Tidak butuh waktu lama untuk menemukan endpoint yang relevan dan mencoba hit langsung dari satu tiket sebagai proof of concept.
+
+Hasilnya: berhasil.
+
+Dari satu request ke API Jira, saya bisa ambil nama tiketnya, deskripsinya, dan yang paling penting — **history-nya**. Seluruh riwayat perubahan status tiket itu bisa ditarik. Artinya bolak-baliknya antara programmer dan QA pun tercatat di sana, tinggal diolah.
+
+## "Mbak, Butuh Ta?"
+
+Setelah rapat selesai, saya hampiri PM.
+
+*"Mbak, butuh data yang bolak-balik itu?"*
+
+*"Iya butuh, Mas, kalau bisa."*
+
+*"Ntar bisa saya buatkan."*
+
+Singkat. Dan dari sana rasa challenged-nya makin kuat.
+
+## Potensi yang Lebih Besar
+
+Sebenarnya kalau dipikir lebih jauh, ini bukan hanya soal tiket yang bouncing antara programmer dan QA.
+
+Dari API Jira yang sama, banyak insight lain yang bisa digali:
+
+- Tiket mana yang paling sering carry over antar sprint
+- Tiket mana yang estimasinya selalu meleset jauh
+- Pattern siapa yang paling sering punya tiket bouncing — apakah ada korelasi dengan kompleksitas task atau dengan kejelasan spesifikasi
+
+Semua itu ada di history Jira. Tinggal bagaimana kita mengolahnya menjadi sesuatu yang actionable.
+
+Untuk sekarang, goals-nya sederhana dulu: buktikan bahwa data bouncing QA-programmer bisa ditarik dan divisualisasikan. Dan itu sudah terbukti bisa.
+
+## Yang Saya Suka dari Momen Ini
+
+Ini bukan task yang ada di sprint. Bukan yang diminta secara formal. Tapi justru dari gumaman kecil yang hampir tidak terdengar di tengah rapat itulah sesuatu yang menarik muncul.
+
+Saya selalu percaya bahwa rasa ingin tahu itu aset. Ketika mendengar "bisa nggak ya?" — reaksi pertama saya bukan mencari alasan kenapa tidak bisa. Tapi langsung coba.
+
+Dan ternyata bisa.
+
+---
+
+*Dashboard-nya belum jadi. Tapi proof of concept-nya sudah ada. Itu cukup untuk mulai.*
+
+## Update: 2 Hari Kemudian
+
+Ternyata tidak butuh lama.
+
+Dua hari setelah proof of concept itu, dashboardnya sudah selesai — dan untuk sisi frontend-nya, saya tidak perlu build dari nol. Cukup pakai **Metabase**.
+
+Metabase terkoneksi ke data yang sudah berhasil ditarik dari Jira API, dan dari sana PM bisa langsung eksplorasi sendiri: tiket mana yang paling banyak bouncing, visualisasi dalam bentuk grafik, dan apapun yang dibutuhkan selama masih dalam scope yang sudah disepakati.
+
+Simpel, cepat, dan langsung bisa dipakai.
+
+Kadang solusi terbaik bukan yang paling kompleks — tapi yang paling cepat menjawab kebutuhan.
