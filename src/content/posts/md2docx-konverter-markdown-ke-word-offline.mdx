@@ -1,0 +1,70 @@
+---
+title: "Kenapa Saya Bikin Sendiri Konverter Markdown ke Word"
+date: "2026-08-24"
+excerpt: "Dev plan dan test plan saya selalu mulai dari Markdown. Tapi tim non-teknis butuh Word. Daripada upload ke cloud, saya bikin converter sendiri."
+tags: ["tools", "productivity", "engineering", "opensource"]
+published: true
+---
+
+Setiap mulai atau menutup sebuah pekerjaan, saya punya kebiasaan yang cukup konsisten: bikin dev plan, atau test plan, atau kadang keduanya. Formatnya selalu Markdown, dan selalu di-*push* ke Git. Buat saya sendiri, ini format yang paling enak — cepat ditulis, enak di-*diff*, dan hidup berdampingan dengan kode.
+
+Masalahnya muncul begitu dokumen itu harus keluar dari lingkaran teknis.
+
+## Markdown Tidak Cukup untuk Semua Orang
+
+PM atau QA di tim operasional tidak semuanya nyaman baca Markdown mentah. Heading dengan tanda pagar, tabel dengan garis pipa — buat saya itu wajar, tapi buat mereka itu tambahan beban baca yang tidak perlu. Jadinya dokumen yang sama harus saya ubah lagi jadi Word, biar enak dibuka, enak dikomentari, enak dibaca di layar mana pun.
+
+Artinya saya kerja dua kali. Pertama nulis Markdown-nya, seperti biasa. Kedua, mindahin isinya ke Word — manual, dari awal.
+
+## Kenapa Tidak Pakai Converter Online Saja?
+
+Ada, dan saya tahu itu ada. Tinggal upload file, beberapa detik, jadi Word. Tapi setiap kali mau pakai, saya selalu ragu di titik yang sama: dokumen yang saya upload itu tersimpan di server mereka atau tidak? Dihapus benar-benar, atau cuma "dihapus" dari tampilan?
+
+Dev plan dan test plan yang saya buat itu sering berisi hal-hal yang sifatnya confidential — bukan sesuatu yang saya mau taruh nasibnya di tangan kebijakan retensi data pihak ketiga yang saya sendiri tidak tahu isinya. Selama saya tidak bisa memastikan itu, saya lebih pilih cara yang lebih lambat tapi aman: convert manual di kepala saya sendiri, sambil rapikan format satu per satu.
+
+## Jadi Saya Bikin Sendiri
+
+Titik baliknya sederhana: kalau masalahnya adalah kepercayaan ke cloud, ya jangan pakai cloud.
+
+Saya bikin tool kecil yang jalan sepenuhnya lokal, dibungkus Docker, pakai [Pandoc](https://pandoc.org/) di baliknya buat proses konversinya. Tidak ada proses upload, tidak ada API call ke luar, tidak ada server pihak ketiga yang terlibat. File masuk, file keluar, semuanya di komputer saya sendiri. Internet cuma dibutuhkan sekali, waktu build image Docker-nya saja.
+
+Selain urusan keamanan, ada bonus yang saya suka: hasilnya sudah punya tema visual sendiri — heading berwarna navy, tabel dengan header berwarna dan banding baris, mirip gaya laporan teknis yang rapi tanpa saya harus atur satu-satu di Word.
+
+Repo-nya sudah saya taruh di GitHub, terbuka buat siapa pun yang punya masalah serupa: **[md2docx](https://github.com/adith-widhiantara/md2docx)**.
+
+## Cara Pakainya
+
+Build image-nya sekali saja:
+
+```bash
+docker build -t md2docx .
+```
+
+Setelah itu, dari folder yang berisi file `.md` kamu (bukan folder proyek ini):
+
+```bash
+# convert satu file, nama output otomatis
+docker run --rm -v "$(pwd):/data" md2docx laporan.md
+
+# convert satu file, dengan nama output custom
+docker run --rm -v "$(pwd):/data" md2docx laporan.md laporan_final.docx
+
+# convert semua file .md di folder itu sekaligus
+docker run --rm -v "$(pwd):/data" md2docx --all
+```
+
+File `.docx` hasilnya langsung muncul di folder yang sama, dan otomatis di-*chown* ke user saya sendiri — jadi tidak ada drama file "bergembok" milik `root` gara-gara dibuat dari dalam container.
+
+Biar makin singkat, saya tambahkan alias di `.bashrc`:
+
+```bash
+alias md2docx='docker run --rm -v "$(pwd):/data" md2docx'
+```
+
+Jadinya tinggal `md2docx laporan.md` atau `md2docx --all`, selesai.
+
+Sekarang dev plan dan test plan saya tetap lahir dari Markdown seperti biasa — tapi begitu perlu dikirim ke PM atau QA, saya tidak lagi kerja dua kali, dan tidak perlu ragu soal ke mana dokumennya "pergi".
+
+---
+
+*Kadang solusi terbaik untuk masalah kecil ya bikin sendiri.*
