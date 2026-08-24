@@ -1,0 +1,21 @@
+---
+title: "Ketika Query Manual Kalah dari AI yang Diajak Ngobrol"
+date: "2026-08-24"
+excerpt: "Diminta cari data dosen yang beragam dari ratusan orang, saya bikin crawler lalu pasangkan dengan AI biar tim bisa cari sendiri."
+tags: ["engineering", "AI", "backend", "laravel", "automation"]
+published: true
+---
+
+Hari ini dapat challenge dari tim: cari data dosen — jabatan fungsional, riwayat pendidikan, publikasi, macam-macam — yang cukup beragam. Misalnya dosen dengan publikasi lebih dari 5, atau yang lulusan dari kampus tertentu. Kedengarannya sederhana, sampai saya lihat sumber datanya.
+
+API yang tersedia itu jenis yang bikin sabar diuji. Endpoint-nya kuno, dan cara ambil datanya harus satu per satu per dosen. Mau tahu jabatan fungsional? Hit endpoint itu, per ID SDM. Riwayat pendidikan? Hit lagi, per ID SDM juga. Dikali 500-600 dosen, itu bukan kerjaan yang bisa saya selesaikan dengan sabar dan query manual satu-satu.
+
+Jadi saya bikin aplikasi kecil pakai Laravel, namanya [sister-crawl-ai](https://github.com/adith-widhiantara/sister-crawl-ai). Cara kerjanya dua tahap.
+
+Tahap pertama, crawling. Aplikasi ambil daftar semua dosen dulu dari endpoint utama, lalu dari situ dapat ID SDM masing-masing. ID itu yang dipakai untuk loop ke tiap endpoint detail — jabatan fungsional, riwayat pendidikan, publikasi, dan lain-lain — satu per satu ID, tapi otomatis, jadi saya tinggal jalankan dan tunggu. Hasilnya disimpan ke database sendiri, dengan tabel-tabel yang saling terhubung lewat ID SDM tadi. Jadi bukan cuma disalin mentah, tapi sudah dirapikan jadi bentuk yang bisa di-query relasional.
+
+Tapi ternyata itu belum menyelesaikan masalah sebenarnya. Saya masih harus nulis query manual tiap kali butuh data spesifik — dosen ini, dosen itu, `LIKE` atau `ILIKE` buat nama universitas, dan seterusnya. Capek sendiri, dan yang butuh data bukan cuma saya.
+
+Tahap kedua, di sinilah Gemini masuk. Bukan buat hal muluk-muluk, cuma satu fungsi: terjemahkan permintaan bahasa manusia jadi query terhadap bank data yang sudah dicrawl tadi. Aplikasi kasih tahu Gemini struktur tabel yang ada, saya ketik permintaan semacam "5 dosen dengan publikasi terbanyak", Gemini olah jadi query, query itu dijalankan ke database, dan hasilnya ditampilkan balik. Dinamis, tanpa saya harus jadi perantara tiap kali ada permintaan baru.
+
+Efeknya lumayan — tim QA sekarang bisa cari sendiri data yang mereka butuhkan tanpa nunggu saya nulis query. Challenge accepted, dan kelarnya bukan dari saya makin rajin query manual, tapi dari saya males query manual.
