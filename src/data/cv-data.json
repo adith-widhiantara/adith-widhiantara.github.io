@@ -319,7 +319,7 @@
     "technicalSkills": [
       {
         "category": "Programming & Web Development",
-        "items": ["JavaScript", "TypeScript", "HTML5", "CSS3", "React", "NextJs", "Tailwind", "Postgresql", "Postman", "Jest", "Redis"]
+        "items": ["JavaScript", "TypeScript", "HTML5", "CSS3", "React", "NextJs", "Tailwind", "PHP", "Laravel", "Postgresql", "MySQL", "Memcache", "Postman", "Jest", "Redis"]
       },
       {
         "category": "Development Tools",
