@@ -4,7 +4,8 @@ import cvData from '@/data/cv-data.json'
 
 export default function Skills() {
   const shouldReduce = useReducedMotion()
-  const { backend, frontend, databases, cachingAndMessaging, tools } = cvData.skills
+  const { backend, frontend, databases, cachingAndMessaging, tools, technicalSkills, softSkills, aiIntegrationSkills, collaborationTools, languages } =
+    cvData.skills
 
   const fadeUp = (delay = 0) =>
     shouldReduce
@@ -122,6 +123,89 @@ export default function Skills() {
               ))}
             </div>
           </motion.div>
+        </div>
+
+        <div className="mt-16 pt-10 border-t" style={{ borderColor: 'var(--border)' }}>
+          <h3 className="text-lg font-bold mb-8" style={{ color: 'var(--text-primary)' }}>
+            Technical Skills
+          </h3>
+          <div className="grid gap-10 sm:grid-cols-2">
+            <motion.div {...fadeUp(0)} className="space-y-8">
+              {technicalSkills.map((group) => (
+                <div key={group.category}>
+                  <h4 className="font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                    {group.category}
+                  </h4>
+                  <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                    {group.items.map((item) => (
+                      <li key={item} className="text-sm flex gap-2" style={{ color: 'var(--text-muted)' }}>
+                        <span>&bull;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              <div>
+                <h4 className="font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Language Skills
+                </h4>
+                <ul className="space-y-1.5">
+                  {languages.map((lang) => (
+                    <li key={lang.name} className="text-sm flex gap-2" style={{ color: 'var(--text-muted)' }}>
+                      <span>&bull;</span>
+                      {lang.name} ({lang.level})
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            <motion.div {...fadeUp(0.1)} className="space-y-8">
+              <div>
+                <h4 className="font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Soft Skills
+                </h4>
+                <ul className="space-y-1.5">
+                  {softSkills.map((item) => (
+                    <li key={item} className="text-sm flex gap-2" style={{ color: 'var(--text-muted)' }}>
+                      <span>&bull;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                  AI Integration Skills
+                </h4>
+                <ul className="space-y-1.5">
+                  {aiIntegrationSkills.map((item) => (
+                    <li key={item} className="text-sm flex gap-2" style={{ color: 'var(--text-muted)' }}>
+                      <span>&bull;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-sm mb-3" style={{ color: 'var(--text-primary)' }}>
+                  Collaboration & Productivity Tools
+                </h4>
+                <ul className="space-y-1.5">
+                  {collaborationTools.map((item) => (
+                    <li key={item} className="text-sm flex gap-2" style={{ color: 'var(--text-muted)' }}>
+                      <span>&bull;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

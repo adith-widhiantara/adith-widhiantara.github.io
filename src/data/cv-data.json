@@ -315,7 +315,31 @@
     "databases": ["PostgreSQL", "MySQL", "MariaDB"],
     "practices": ["RESTful API", "SOLID principles", "Agile development (Scrum)"],
     "cachingAndMessaging": ["Redis", "Memcached", "RabbitMQ"],
-    "tools": ["Git", "Docker", "Metabase", "Office 365", "Camunda Modeler"]
+    "tools": ["Git", "Docker", "Metabase", "Office 365", "Camunda Modeler"],
+    "technicalSkills": [
+      {
+        "category": "Programming & Web Development",
+        "items": ["JavaScript", "TypeScript", "HTML5", "CSS3", "React", "NextJs", "Tailwind", "PHP", "Laravel", "Postgresql", "MySQL", "Memcache", "Postman", "Jest", "Redis"]
+      },
+      {
+        "category": "Development Tools",
+        "items": ["Linux", "Docker", "Git", "Github Action", "Supabase"]
+      }
+    ],
+    "softSkills": [
+      "Analytical Thinking & Problem Solving",
+      "Attention to Detail & Data Accuracy",
+      "Cross-functional Team Collaboration",
+      "Stakeholder Communication & Reporting",
+      "Time Management & Prioritization",
+      "Adaptability & Continuous Learning"
+    ],
+    "aiIntegrationSkills": ["Claude Code"],
+    "collaborationTools": ["Notion", "Google Workspace"],
+    "languages": [
+      { "name": "Indonesia", "level": "Native" },
+      { "name": "English", "level": "Conversational" }
+    ]
   },
   "certifications": [
     {
