@@ -31,12 +31,27 @@ export interface SkillItem {
   highlights: string[]
 }
 
+export interface SkillCategory {
+  category: string
+  items: string[]
+}
+
+export interface LanguageSkill {
+  name: string
+  level: string
+}
+
 export interface Skills {
   backend: SkillItem[]
   frontend: SkillItem[]
   databases: string[]
   practices: string[]
   tools: string[]
+  technicalSkills: SkillCategory[]
+  softSkills: string[]
+  aiIntegrationSkills: string[]
+  collaborationTools: string[]
+  languages: LanguageSkill[]
 }
 
 export interface CertificationItem {
